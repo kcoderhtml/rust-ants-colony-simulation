@@ -13,6 +13,7 @@ pub struct SimSettings {
     pub is_camera_follow: bool,
     pub is_show_menu: bool,
     pub restart_sim: bool,
+    pub clear_pheromones: bool,
 }
 
 impl Plugin for GuiPlugin {
@@ -45,7 +46,12 @@ fn settings_toggle(
         settings.is_show_ants = !settings.is_show_ants;
         toggle_ant_visibility(ant_query, settings.is_show_ants);
     }
-
+    if keys.just_pressed(KeyCode::P) {
+        settings.clear_pheromones = true;
+        unsafe {
+            CLEAR_PHEROMONES = true;
+        }
+    }
 }
 
 fn settings_dialog(
@@ -95,6 +101,7 @@ impl Default for SimSettings {
             is_camera_follow: false,
             is_show_menu: false,
             restart_sim: false,
+            clear_pheromones: false,
         }
     }
 }

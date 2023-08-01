@@ -40,6 +40,8 @@ pub const PH_COLOR_TO_FOOD: (u8, u8, u8) = (17, 106, 123);
 pub const PH_COLOR_TO_HOME: (u8, u8, u8) = (92, 46, 126);
 pub const PH_GRID_OPACITY: u8 = 255;
 
+pub static mut CLEAR_PHEROMONES: bool = false;
+
 // Food
 // Define the food locations as a vector of tuples
 pub const FOOD_LOCATIONS: &[(f32, f32)] = &[

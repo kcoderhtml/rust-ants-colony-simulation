@@ -85,6 +85,14 @@ impl Plugin for PheromonePlugin {
 }
 
 fn pheromone_decay(mut pheromones: ResMut<Pheromones>) {
+    unsafe {
+        if CLEAR_PHEROMONES == true {
+            CLEAR_PHEROMONES = false;
+            pheromones.to_food.strength = HashMap::new();
+            pheromones.to_home.strength = HashMap::new();
+            return;
+        }
+    }
     pheromones.to_food.decay();
     pheromones.to_home.decay();
 }
